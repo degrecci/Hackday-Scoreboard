@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { GIT_SEARCH_URL } from './constants/gitSearchUrl';
-import SEARCH_QUERY from './constants/searchQuery';
+import searchQuery from './utils/searchQuery';
 import USERS_LIST from './constants/usersList';
 
 export default class Scoreboard extends Component {
@@ -12,7 +12,7 @@ export default class Scoreboard extends Component {
   }
 
   componentDidMount = () => {
-    fetch(`${GIT_SEARCH_URL}${SEARCH_QUERY}`, {
+    fetch(`${GIT_SEARCH_URL}${searchQuery}`, {
       method: 'get',
       headers: new Headers({
         'Accept': 'application/vnd.github.cloak-preview'
