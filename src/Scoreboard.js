@@ -6,7 +6,7 @@ import USERS_LIST from './constants/usersList';
 
 export default class Scoreboard extends Component {
   state = {
-    content: '',
+    content: {},
     isLoading: true,
   }
 
