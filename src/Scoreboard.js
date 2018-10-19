@@ -42,6 +42,25 @@ export default class Scoreboard extends Component {
     return count;
   }
 
+  insertUsersPullRequests = (content) => {
+    return USERS_LIST.map(user => {
+      return {
+        username: user,
+        pullRequests: this.countPRsByUsers(content.items, user),
+      };
+    });
+  }
+
+  rankedUsersByPullRequests = (content) => {
+    const userData = this.insertUsersPullRequests(content);
+
+    const rankedUsers = userData.sort((a, b) => b.pullRequests - a.pullRequests)
+
+    return rankedUsers.map((rankedUser, index) => {
+      return <li key={index}>{rankedUser.username} - {rankedUser.pullRequests}</li>
+    })
+  }
+
   render() {
     const { content, isLoading } = this.state;
     const isUsersListEmpty = 0 === USERS_LIST.length;
@@ -52,13 +71,7 @@ export default class Scoreboard extends Component {
           <div>
             <h1 className="scoreboard__title">PULL REQUEST SCOREBOARD</h1>
             <ul className="scoreboard__users-list">
-            {USERS_LIST.map((user, index) => {
-              return (
-                <li key={index} className="scoreboard__users-list-item">
-                  {user} - {this.countPRsByUsers(content.items, user)}
-                </li>
-              )
-            })}
+              {this.rankedUsersByPullRequests(content)}
             </ul>
             <h2 className="scoreboard__total-score">TOTAL {content.total_count}</h2>
           </div>
