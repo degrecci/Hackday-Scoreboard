@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 import { GIT_SEARCH_URL } from './constants/gitSearchUrl';
 import searchQuery from './utils/searchQuery';
@@ -29,19 +28,40 @@ export default class Scoreboard extends Component {
       })
   }
 
+  countPRsByUsers = (items, user) => {
+    let count = 0;
+
+    items.map(item => {
+      if(item.user.login=== user) {
+        count++
+      }
+    })
+
+    return count;
+  }
+
   render() {
-    const { content } = this.state;
-    console.log(USERS_LIST);
+    const { content, isLoading } = this.state;
+    const isUsersListEmpty = 0 === USERS_LIST.length;
 
     return (
       <div>
-        <h1>TOTAL DE PULL REQUESTS {content.total_count}</h1>
-        <ul>
-        {USERS_LIST.map(user => {
-          <li>{user}</li>
-        })}
-        </ul>
-        {/* {JSON.stringify(this.state.content)} */}
+        {(!isUsersListEmpty && !isLoading) &&
+          <div>
+            <h1>PULL REQUEST SCOREBOARD</h1>
+            <ul>
+            {USERS_LIST.map((user, index) => {
+              return (
+                <li key={index}>{user} {this.countPRsByUsers(content.items, user)}</li>
+              )
+            })}
+            </ul>
+            <h2>TOTAL {content.total_count}</h2>
+          </div>
+        }
+        {isUsersListEmpty &&
+          <h1>ADICIONE USUÁRIOS GITHUB NO ARQUIVO usersList.js</h1>
+        }
       </div>
     )
   }
