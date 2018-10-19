@@ -1,9 +1,11 @@
+import moment from 'moment';
 import USERS_LIST from '../constants/usersList';
 
 const authors = USERS_LIST.join('+author:');
 
-const startDate = '2018-09-30T10:00:00+00:00';
-const endDate = '2018-11-01T12:00:00+00:00';
+const startDate = moment('8:30', 'HH:mm').format();
+const endDate = moment('17:00', 'HH:mm').format();
+
 const createdDate = `${encodeURIComponent(startDate)}..${encodeURIComponent(endDate)}`;
 
 const quantityPerPage = '300';
