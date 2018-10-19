@@ -15,7 +15,7 @@ body {
 }
 
 .scoreboard__title {
-  font-size: 6vw;
+  font-size: 7vw;
 }
 
 .scoreboard__total-score {
@@ -32,4 +32,3 @@ body {
   font-size: 3vw;
   padding: 0px;
 };
-

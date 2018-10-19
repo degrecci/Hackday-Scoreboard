@@ -55,7 +55,7 @@ export default class Scoreboard extends Component {
             {USERS_LIST.map((user, index) => {
               return (
                 <li key={index} className="scoreboard__users-list-item">
-                  {user} {this.countPRsByUsers(content.items, user)}
+                  {user} - {this.countPRsByUsers(content.items, user)}
                 </li>
               )
             })}
