@@ -4,6 +4,8 @@ import { GIT_SEARCH_URL } from './constants/gitSearchUrl';
 import searchQuery from './utils/searchQuery';
 import USERS_LIST from './constants/usersList';
 
+import './Scoreboard.css';
+
 export default class Scoreboard extends Component {
   state = {
     content: {},
@@ -45,18 +47,20 @@ export default class Scoreboard extends Component {
     const isUsersListEmpty = 0 === USERS_LIST.length;
 
     return (
-      <div>
+      <div className="scoreboard">
         {(!isUsersListEmpty && !isLoading) &&
           <div>
-            <h1>PULL REQUEST SCOREBOARD</h1>
-            <ul>
+            <h1 className="scoreboard__title">PULL REQUEST SCOREBOARD</h1>
+            <ul className="scoreboard__users-list">
             {USERS_LIST.map((user, index) => {
               return (
-                <li key={index}>{user} {this.countPRsByUsers(content.items, user)}</li>
+                <li key={index} className="scoreboard__users-list-item">
+                  {user} {this.countPRsByUsers(content.items, user)}
+                </li>
               )
             })}
             </ul>
-            <h2>TOTAL {content.total_count}</h2>
+            <h2 className="scoreboard__total-score">TOTAL {content.total_count}</h2>
           </div>
         }
         {isUsersListEmpty &&

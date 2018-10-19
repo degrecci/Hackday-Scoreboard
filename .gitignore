@@ -2,3 +2,4 @@ node_modules
 dev
 .cache
 src/constants/usersList.js
+yarn-error.log
