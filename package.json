@@ -8,7 +8,7 @@
     "start": "parcel src/index.html -d dev",
     "build": "parcel build src/index.html",
     "predeploy": "yarn build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
