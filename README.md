@@ -1,4 +1,4 @@
-![alt text](https://raw.githubusercontent.com/degrecci/projectname/branch/path/to/img.png)
+![alt text](src/assets/img/pull-requests-score-board.png)
 
 # Hackday Scoreboard
 
