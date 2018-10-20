@@ -18,7 +18,7 @@ const USERS_LIST = [
   'efeito',
   'magnusrusso',
   'rodrigoalexandrecosta',
-  'sideliasilva',
+  'sidelia',
   'cedric-matheus',
   'mario-balan',
   'eeleeoonee'
