@@ -21,7 +21,8 @@ const USERS_LIST = [
   'sidelia',
   'cedric-matheus',
   'mario-balan',
-  'eeleeoonee'
+  'eeleeoonee',
+  'victorperin',
 ];
 
 export default USERS_LIST;
