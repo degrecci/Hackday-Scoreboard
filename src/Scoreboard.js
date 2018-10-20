@@ -13,6 +13,11 @@ export default class Scoreboard extends Component {
   }
 
   componentDidMount = () => {
+    this.requestUsersPullRequests()
+    setInterval(this.requestUsersPullRequests, 120000);
+  }
+
+  requestUsersPullRequests = () => {
     fetch(`${GIT_SEARCH_URL}${searchQuery}`, {
       method: 'get',
       headers: new Headers({
