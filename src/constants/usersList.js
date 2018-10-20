@@ -11,7 +11,7 @@ const USERS_LIST = [
   'BrunohSL',
   'denidiasjr',
   'thayna-oliveira',
-  'renanansuperlogica',
+  'renan-ponciano',
   'romulojjunior',
   'CShigaki',
   'pethersonmoreno',
