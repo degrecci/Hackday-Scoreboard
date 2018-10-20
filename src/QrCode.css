@@ -1,0 +1,8 @@
+h3 {
+  font-size: 2vw;
+}
+
+.qrcode {
+  position: absolute;
+  left: 10px;
+}
