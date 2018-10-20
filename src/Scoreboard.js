@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
+import { Events, animateScroll as scroll } from 'react-scroll'
 
 import { GIT_SEARCH_URL } from './constants/gitSearchUrl';
 import searchQuery from './utils/searchQuery';
 import USERS_LIST from './constants/usersList';
 import TIMERS from './constants/scrollDelays';
-
-import { Link, Element , Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
+import QrCode from './QrCode';
 
 import './Scoreboard.css';
 
@@ -117,6 +117,7 @@ export default class Scoreboard extends Component {
         {(!isUsersListEmpty && !isLoading) &&
           <div>
             <h1 className="scoreboard__title">PULL REQUEST SCOREBOARD</h1>
+            <QrCode />
             <ul className="scoreboard__users-list">
               {this.rankedUsersByPullRequests(content)}
             </ul>

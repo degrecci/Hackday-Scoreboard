@@ -1,0 +1,14 @@
+h3 {
+  font-size: 2vw;
+}
+
+.qrcode {
+  left: 10px;
+  width: 15%;
+}
+
+.qrcode__wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
