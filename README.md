@@ -1,3 +1,5 @@
+![alt text](https://raw.githubusercontent.com/degrecci/projectname/branch/path/to/img.png)
+
 # Hackday Scoreboard
 
 Placar de pull requests feito para hackdays
