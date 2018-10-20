@@ -3,6 +3,6 @@ h3 {
 }
 
 .qrcode {
-  position: absolute;
   left: 10px;
+  width: 15%;
 }
