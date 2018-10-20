@@ -2,10 +2,13 @@
   "name": "hackday-scoreboard",
   "version": "1.0.0",
   "main": "index.js",
+  "homepage": "http://degrecci.github.io/hackday-scoreboard",
   "license": "MIT",
   "scripts": {
     "start": "parcel src/index.html -d dev",
-    "build": "parcel build src/index.html"
+    "build": "parcel build src/index.html",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
@@ -20,6 +23,7 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
+    "gh-pages": "^2.0.1",
     "parcel-bundler": "^1.10.3"
   },
   "dependencies": {
