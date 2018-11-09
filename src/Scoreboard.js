@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import { Events, animateScroll as scroll } from 'react-scroll'
 
 import { GIT_SEARCH_URL } from './constants/gitSearchUrl';
 import searchQuery from './utils/searchQuery';
 import USERS_LIST from './constants/usersList';
-import TIMERS from './constants/scrollDelays';
 import QrCode from './QrCode';
 
 import './Scoreboard.css';
@@ -18,41 +16,11 @@ export default class Scoreboard extends Component {
       isLoading: true,
       shouldScrollDown: true,
     }
-
-    Events.scrollEvent.register('end', () => {
-      const { shouldScrollDown } = this.state;
-
-      if (shouldScrollDown) {
-        scroll.scrollToBottom({
-          duration: TIMERS.downDuration,
-          delay: TIMERS.delay,
-        });
-        this.setState({
-          shouldScrollDown: false,
-        });
-
-        return;
-      }
-      scroll.scrollToTop({
-        duration: TIMERS.upDuration,
-        delay: 100,
-      });
-      this.setState({
-        shouldScrollDown: true
-      })
-    });
   }
 
   componentDidMount() {
     this.requestUsersPullRequests()
     setInterval(this.requestUsersPullRequests, 120000);
-
-    setTimeout(() => {
-      scroll.scrollToBottom({
-        duration: TIMERS.downDuration,
-        delay: TIMERS.delay,
-      });
-    }, 1000)
 
     this.setState({
       shouldScrollDown: false
