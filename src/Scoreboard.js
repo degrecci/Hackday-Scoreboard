@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import { GIT_SEARCH_URL } from './constants/gitSearchUrl';
 import searchQuery from './utils/searchQuery';
 import USERS_LIST from './constants/usersList';
-import QrCode from './QrCode';
 
 import './Scoreboard.css';
 
