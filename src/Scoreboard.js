@@ -85,7 +85,6 @@ export default class Scoreboard extends Component {
         {(!isUsersListEmpty && !isLoading) &&
           <div>
             <h1 className="scoreboard__title">PULL REQUEST SCOREBOARD</h1>
-            <QrCode />
             <ul className="scoreboard__users-list">
               {this.rankedUsersByPullRequests(content)}
             </ul>
