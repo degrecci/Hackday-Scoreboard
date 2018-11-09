@@ -5369,6 +5369,18 @@ react-dom@^16.7.0-alpha:
     prop-types "^15.6.2"
     scheduler "^0.11.0-alpha.0"
 
+react-use-fetch@^0.0.0-alpha.1:
+  version "0.0.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/react-use-fetch/-/react-use-fetch-0.0.0-alpha.1.tgz#20ad22a6e0417ae769368fd577a0488ad6d068ff"
+  integrity sha512-ZbEWoUlad+ajyZ8ImBTUIChDmeuahySkj698Vx0Q8HdIbIDYFBC3Hl3DxjrPpVjdWuuiPBD5b1noiy4cdw7aAg==
+  dependencies:
+    react-use-promise "^0.0.0-alpha.1"
+
+react-use-promise@^0.0.0-alpha.1:
+  version "0.0.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/react-use-promise/-/react-use-promise-0.0.0-alpha.1.tgz#55e5deb69b410a0a76ad4854b8d5c696ac80a6db"
+  integrity sha512-/F2n1Nh9JEC0KRwXD7HxI7jmGbduDAHA4PtOxCErBJ/yda7EUkOoe7Yp1gQCSRPBoEwMtin98FlDhi31knKzkg==
+
 react@^16.7.0-alpha:
   version "16.7.0-alpha.0"
   resolved "https://registry.yarnpkg.com/react/-/react-16.7.0-alpha.0.tgz#e2ed4abe6f268c9b092a1d1e572953684d1783a9"

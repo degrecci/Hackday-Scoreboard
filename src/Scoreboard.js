@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
+import useFetch, { useJsonResponse } from 'react-use-fetch';
 
 import { GIT_SEARCH_URL } from './constants/gitSearchUrl';
 import searchQuery from './utils/searchQuery';
@@ -6,94 +7,81 @@ import USERS_LIST from './constants/usersList';
 
 import './Scoreboard.css';
 
-export default class Scoreboard extends Component {
-  constructor(props) {
-    super(props);
+export default function Scoreboard() {
+  const [isLoading, setIsLoading] = useState(true);
+  const response = useFetch(`${GIT_SEARCH_URL}${searchQuery}`, {
+    method: 'get',
+    headers: new Headers({
+      Accept: 'application/vnd.github.cloak-preview',
+    }),
+  });
 
-    this.state = {
-      content: {},
-      isLoading: true,
-      shouldScrollDown: true,
-    }
-  }
+  const [content] = useJsonResponse(response);
+  setIsLoading(false);
 
-  componentDidMount() {
-    this.requestUsersPullRequests()
+  useEffect(() => {
+    requestUsersPullRequests();
     setInterval(this.requestUsersPullRequests, 120000);
+  });
 
-    this.setState({
-      shouldScrollDown: false
-    })
-  }
-
-  requestUsersPullRequests = () => {
-    fetch(`${GIT_SEARCH_URL}${searchQuery}`, {
-      method: 'get',
-      headers: new Headers({
-        'Accept': 'application/vnd.github.cloak-preview'
-      })
-    })
-      .then(response => {
-        response.json()
-          .then(data => {
-            this.setState({
-              content: data,
-              isLoading: false,
-            });
-          });
-      })
-  }
-
-  countPRsByUsers = (items, user) => {
+  function countPRsByUsers(items, user) {
     let count = 0;
 
-    items.map(item => {
-      if(item.user.login=== user) {
-        count++
+    items.map((item) => {
+      if (item.user.login === user) {
+        return count++;
       }
-    })
+      return null;
+    });
 
     return count;
   }
 
-  insertUsersPullRequests = (content) => {
-    return USERS_LIST.map(user => {
-      return {
-        username: user,
-        pullRequests: this.countPRsByUsers(content.items, user),
-      };
-    });
+  function insertUsersPullRequests(contentToRank) {
+    USERS_LIST.map(user => ({
+      username: user,
+      pullRequests: countPRsByUsers(contentToRank.items, user),
+    }));
   }
 
-  rankedUsersByPullRequests = (content) => {
-    const userData = this.insertUsersPullRequests(content);
+  function rankedUsersByPullRequests(contentToRank) {
+    const userData = insertUsersPullRequests(contentToRank);
 
-    const rankedUsers = userData.sort((a, b) => b.pullRequests - a.pullRequests)
+    const rankedUsers = userData.sort((a, b) => b.pullRequests - a.pullRequests);
 
-    return rankedUsers.map((rankedUser, index) => {
-      return <li key={index}>{rankedUser.username} - {rankedUser.pullRequests}</li>
-    })
+    return rankedUsers.map((rankedUser, index) => (
+      <li key={index}>
+        {rankedUser.username}
+        {' '}
+  -
+        {' '}
+        {rankedUser.pullRequests}
+      </li>
+    ));
   }
 
-  render() {
-    const { content, isLoading } = this.state;
-    const isUsersListEmpty = 0 === USERS_LIST.length;
+  const isUsersListEmpty = USERS_LIST.length === 0;
 
-    return (
-      <div className="scoreboard">
-        {(!isUsersListEmpty && !isLoading) &&
+  return (
+    <div className="scoreboard">
+      {(!isUsersListEmpty && !isLoading)
+          && (
           <div>
             <h1 className="scoreboard__title">PULL REQUEST SCOREBOARD</h1>
             <ul className="scoreboard__users-list">
-              {this.rankedUsersByPullRequests(content)}
+              {rankedUsersByPullRequests(content)}
             </ul>
-            <h2 className="scoreboard__total-score">TOTAL {content.total_count}</h2>
+            <h2 className="scoreboard__total-score">
+TOTAL
+              {' '}
+              {content.total_count}
+            </h2>
           </div>
+          )
         }
-        {isUsersListEmpty &&
-          <h1>ADICIONE USUÁRIOS GITHUB NO ARQUIVO usersList.js</h1>
+      {isUsersListEmpty
+          && <h1>ADICIONE USUÁRIOS GITHUB NO ARQUIVO usersList.js</h1>
         }
-      </div>
-    )
-  }
+    </div>
+  );
 }
