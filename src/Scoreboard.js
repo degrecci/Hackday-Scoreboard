@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import useFetch, { useJsonResponse } from 'react-use-fetch';
 
 import { GIT_SEARCH_URL } from './constants/gitSearchUrl';
 import searchQuery from './utils/searchQuery';
@@ -9,20 +8,22 @@ import './Scoreboard.css';
 
 export default function Scoreboard() {
   const [isLoading, setIsLoading] = useState(true);
-  const response = useFetch(`${GIT_SEARCH_URL}${searchQuery}`, {
-    method: 'get',
-    headers: new Headers({
-      Accept: 'application/vnd.github.cloak-preview',
-    }),
-  });
-
-  const [content] = useJsonResponse(response);
-  setIsLoading(false);
+  const [content, setContent] = useState({});
 
   useEffect(() => {
-    requestUsersPullRequests();
-    setInterval(this.requestUsersPullRequests, 120000);
-  });
+    fetch(`${GIT_SEARCH_URL}${searchQuery}`, {
+      method: 'get',
+      headers: new Headers({
+        Accept: 'application/vnd.github.cloak-preview',
+      }),
+    })
+      .then(response => response.json())
+      .then((data) => {
+        setContent(data);
+        setIsLoading(false);
+      });
+    // setInterval(this.requestUsersPullRequests, 120000);
+  }, []);
 
   function countPRsByUsers(items, user) {
     let count = 0;
@@ -38,7 +39,7 @@ export default function Scoreboard() {
   }
 
   function insertUsersPullRequests(contentToRank) {
-    USERS_LIST.map(user => ({
+    return USERS_LIST.map(user => ({
       username: user,
       pullRequests: countPRsByUsers(contentToRank.items, user),
     }));
