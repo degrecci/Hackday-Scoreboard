@@ -11,18 +11,20 @@ export default function Scoreboard() {
   const [content, setContent] = useState({});
 
   useEffect(() => {
-    fetch(`${GIT_SEARCH_URL}${searchQuery}`, {
-      method: 'get',
-      headers: new Headers({
-        Accept: 'application/vnd.github.cloak-preview',
-      }),
-    })
-      .then(response => response.json())
-      .then((data) => {
-        setContent(data);
-        setIsLoading(false);
-      });
-    // setInterval(this.requestUsersPullRequests, 120000);
+    setInterval(
+      () => fetch(`${GIT_SEARCH_URL}${searchQuery}`, {
+        method: 'get',
+        headers: new Headers({
+          Accept: 'application/vnd.github.cloak-preview',
+        }),
+      })
+        .then(response => response.json())
+        .then((data) => {
+          setContent(data);
+          setIsLoading(false);
+        }),
+      120000,
+    );
   }, []);
 
   function countPRsByUsers(items, user) {
