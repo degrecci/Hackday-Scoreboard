@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-import { GIT_SEARCH_URL } from './constants/gitSearchUrl';
-import searchQuery from './utils/searchQuery';
+import { GIT_SEARCH_URL } from '../constants/gitSearchUrl';
+import searchQuery from '../utils/searchQuery';
 
 import './Scoreboard.css';
 
