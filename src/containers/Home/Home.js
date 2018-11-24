@@ -16,6 +16,14 @@ export default function Home() {
     setUsers(e.target.value);
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter' && e.shiftKey) {
+      return setUsersList(users.split('\n'));
+    }
+
+    return null;
+  };
+
   const isUsersListEmpty = usersList.length === 0;
 
   return (
