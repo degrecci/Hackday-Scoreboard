@@ -1,21 +1,5 @@
-@font-face {
-  font-family: 'scoreboard';
-  src: url('./assets/fonts/scoreboard.ttf');
-}
-
-body {
-  background-color: black;
-}
-
 .scoreboard {
-  display: flex;
-  justify-content: center;
   font-family: 'scoreboard';
-  color: orange;
-}
-
-.scoreboard__title {
-  font-size: 7vw;
 }
 
 .scoreboard__total-score {
