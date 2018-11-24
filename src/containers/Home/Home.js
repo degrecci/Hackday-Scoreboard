@@ -9,7 +9,7 @@ export default function Home() {
 
   const submitUsersList = (e) => {
     e.preventDefault();
-    setUsersList(users.split(','));
+    setUsersList(users.split('\n'));
   };
 
   const handleUsersChange = (e) => {
