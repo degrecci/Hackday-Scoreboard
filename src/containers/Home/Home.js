@@ -23,9 +23,22 @@ export default function Home() {
       <h1 className="home__title">HACKDAY SCOREBOARD</h1>
       {isUsersListEmpty
         && (
-        <form onSubmit={submitUsersList}>
-          <textarea name="users" onChange={handleUsersChange} />
-          <button type="submit">Salvar</button>
+        <form
+          onSubmit={submitUsersList}
+          className="home__form"
+        >
+          <textarea
+            className="home__user-list"
+            name="users"
+            onChange={handleUsersChange}
+            onKeyPress={handleKeyPress}
+          />
+          <button
+            type="submit"
+            className="home__save-button"
+          >
+            Salvar
+          </button>
         </form>
         )
       }
