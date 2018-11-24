@@ -1,11 +1,12 @@
-import React from 'react'
-import { render } from 'react-dom'
+import React from 'react';
+import { render } from 'react-dom';
 
-import Scoreboard from './Scoreboard';
+import Home from './Home';
+import './index.css';
 
-const App = () => <Scoreboard />
+const App = () => <Home />;
 
 render(
-  <App/>,
-  document.getElementById('root')
-)
+  <App />,
+  document.getElementById('root'),
+);

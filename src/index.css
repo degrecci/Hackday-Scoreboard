@@ -1,0 +1,11 @@
+@font-face {
+  font-family: 'scoreboard';
+  src: url('./assets/fonts/scoreboard.ttf');
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  background-color: black;
+  color: orange;
+}
