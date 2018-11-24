@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import Scoreboard from './Scoreboard/Scoreboard';
+import Scoreboard from '../Scoreboard/Scoreboard';
 import './Home.css';
 
 export default function Home() {
