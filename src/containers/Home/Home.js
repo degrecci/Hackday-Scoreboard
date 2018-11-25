@@ -35,6 +35,7 @@ export default function Home() {
           onSubmit={submitUsersList}
           className="home__form"
         >
+          <h3>Adicione usuários no campo abaixo:</h3>
           <textarea
             className="home__user-list"
             name="users"
