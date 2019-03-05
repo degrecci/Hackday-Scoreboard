@@ -1,5 +1,11 @@
+.home__label {
+  margin-top: 20px;
+  color: orange;
+}
+
 .home__title {
   text-align: center;
+  color: orange;
   font-size: 7vw;
   font-family: 'scoreboard';
 }

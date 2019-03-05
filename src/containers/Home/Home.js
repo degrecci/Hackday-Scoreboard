@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 
+import DatePicker from 'antd/lib/date-picker';
+import 'antd/lib/date-picker/style/css';
+
 import Scoreboard from '../Scoreboard/Scoreboard';
 import './Home.css';
 
 export default function Home() {
   const [users, setUsers] = useState([]);
+  const [date, setDate] = useState({});
   const [usersList, setUsersList] = useState([]);
 
   const submitUsersList = (e) => {
@@ -14,6 +18,10 @@ export default function Home() {
 
   const handleUsersChange = (e) => {
     setUsers(e.target.value);
+  };
+
+  const handleDatePicker = (data) => {
+    setDate(data);
   };
 
   const handleKeyPress = (e) => {
@@ -27,7 +35,7 @@ export default function Home() {
   const isUsersListEmpty = usersList.length === 0;
 
   return (
-    <div>
+    <div className="home">
       <h1 className="home__title">HACKDAY SCOREBOARD</h1>
       {isUsersListEmpty
         && (
@@ -35,13 +43,19 @@ export default function Home() {
           onSubmit={submitUsersList}
           className="home__form"
         >
-          <h3>Adicione usuários no campo abaixo:</h3>
+          <h3 className="home__label">Selecione uma Data</h3>
+          <DatePicker
+            onChange={handleDatePicker}
+          />
+
+          <h3 className="home__label">Adicione usuários no campo abaixo:</h3>
           <textarea
             className="home__user-list"
             name="users"
             onChange={handleUsersChange}
             onKeyPress={handleKeyPress}
           />
+
           <button
             type="submit"
             className="home__save-button"
@@ -52,7 +66,7 @@ export default function Home() {
         )
       }
       {!isUsersListEmpty
-        && <Scoreboard usersList={usersList} />
+        && <Scoreboard usersList={usersList} date={date} />
       }
     </div>
   );

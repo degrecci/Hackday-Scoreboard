@@ -9,7 +9,7 @@ export default function Scoreboard(props) {
   const [isLoading, setIsLoading] = useState(true);
   const [content, setContent] = useState({});
 
-  const fetchPullRequests = () => fetch(`${GIT_SEARCH_URL}${searchQuery(props.usersList)}`, {
+  const fetchPullRequests = () => fetch(`${GIT_SEARCH_URL}${searchQuery(props.usersList, props.date)}`, {
     method: 'get',
     headers: new Headers({
       Accept: 'application/vnd.github.cloak-preview',
