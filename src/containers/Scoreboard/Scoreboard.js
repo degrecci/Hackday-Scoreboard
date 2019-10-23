@@ -23,6 +23,8 @@ export default function Scoreboard(props) {
 
   useEffect(() => {
     fetchPullRequests();
+
+    localStorage.setItem( 'form_values', JSON.stringify({ usersList: props.usersList, date: props.date }) );
     setInterval(fetchPullRequests, 120000);
   }, []);
 
