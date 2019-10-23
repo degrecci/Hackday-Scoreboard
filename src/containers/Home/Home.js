@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import DatePicker from 'antd/lib/date-picker';
 import 'antd/lib/date-picker/style/css';
@@ -10,6 +10,15 @@ export default function Home() {
   const [users, setUsers] = useState([]);
   const [date, setDate] = useState({});
   const [usersList, setUsersList] = useState([]);
+
+  useEffect(() => {
+    const storedValues = JSON.parse(localStorage.getItem('form_values') || '{}');
+  
+    if (Object.entries(storedValues).length !== 0) {
+      setUsersList(storedValues.usersList);
+      setDate(storedValues.date);
+    }
+  }, []);
 
   const submitUsersList = (e) => {
     e.preventDefault();
